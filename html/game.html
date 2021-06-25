@@ -1,0 +1,349 @@
+<html>
+
+<head>
+    <title>Black Jack</title>
+
+    <script type="text/javascript" src="/room-main.js"></script>
+
+    <style>
+        .object {
+            position: absolute;
+            transition: all 1.7s ease-in-out;
+            -webkit-transition: all 1.7s ease-in-out;
+            -moz-transition: all 1.7s ease-in-out;
+            -o-transition: all 1.7s ease-in-out;
+        }
+
+        .card {
+            top: 42%;
+            left: 50%;
+        }
+
+        .card1 {
+            top: 41.1%;
+            left: 50.9%;
+        }
+
+        .card2 {
+            top: 41.6%;
+            left: 50.4%;
+        }
+
+        .user_card {
+            top: 78%;
+            left: 5%;
+        }
+
+        .dealer_card {
+            top: 10%;
+            left: 40%;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .multiple_temp {
+            top: 78%;
+            left: 5%;
+            transform: scale(1.5);
+            -webkit-transform: scale(1.5);
+            -o-transform: scale(1.5);
+            -moz-transform: scale(1.5);
+        }
+
+        .multiple_temp2 {
+            top: 10%;
+            left: 40%;
+            transform: scale(0.7);
+            -webkit-transform: scale(0.7);
+            -o-transform: scale(0.7);
+            -moz-transform: scale(0.7);
+        }
+
+        .multiple_temp3 {
+            top: 10%;
+            left: 41.5%;
+            transform: scale(0.7);
+            -webkit-transform: scale(0.7);
+            -o-transform: scale(0.7);
+            -moz-transform: scale(0.7);
+        }
+
+        .multiple1 {
+            top: 77%;
+            left: 5%;
+            transform: rotate(360deg) scale(1.5);
+            -webkit-transform: rotate(360deg) scale(1.5);
+            -o-transform: rotate(360deg) scale(1.5);
+            -moz-transform: rotate(360deg) scale(1.5);
+        }
+
+        .multiple2 {
+            top: 10%;
+            left: 0%;
+            transform: rotate(360deg) scale(0.5);
+            -webkit-transform: rotate(360deg) scale(0.5);
+            -o-transform: rotate(360deg) scale(0.5);
+            -moz-transform: rotate(360deg) scale(0.5);
+        }
+
+        .multiple3 {
+            top: 25%;
+            left: 0%;
+            transform: rotate(360deg) scale(0.5);
+            -webkit-transform: rotate(360deg) scale(0.5);
+            -o-transform: rotate(360deg) scale(0.5);
+            -moz-transform: rotate(360deg) scale(0.5);
+        }
+
+        .multiple4 {
+            top: 40%;
+            left: 0%;
+            transform: rotate(360deg) scale(0.5);
+            -webkit-transform: rotate(360deg) scale(0.5);
+            -o-transform: rotate(360deg) scale(0.5);
+            -moz-transform: rotate(360deg) scale(0.5);
+        }
+
+        .multiple5 {
+            top: 55%;
+            left: 0%;
+            transform: rotate(360deg) scale(0.5);
+            -webkit-transform: rotate(360deg) scale(0.5);
+            -o-transform: rotate(360deg) scale(0.5);
+            -moz-transform: rotate(360deg) scale(0.5);
+        }
+
+        .multiple6 {
+            top: 10%;
+            left: 40%;
+            transform: rotate(360deg) scale(0.8);
+            -webkit-transform: rotate(360deg) scale(0.8);
+            -o-transform: rotate(360deg) scale(0.8);
+            -moz-transform: rotate(360deg) scale(0.8);
+        }
+
+        @import "compass/css3";
+
+        body {
+            background-image: url("/table.jpg");
+            background-size: 100% 100%;
+            font-family: Open Sans;
+            font-size: 14px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .b1 {
+            top: 10%;
+        }
+
+        .b2 {
+            top: 33%;
+        }
+
+        .b3 {
+            top: 57%;
+        }
+
+        .b4 {
+            top: 80%;
+        }
+
+        .circ-button {
+            position: absolute;
+            right: 10%;
+            display: block;
+            width: 7em;
+            height: 7em;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            line-height: 67px;
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+            background: rgb(226, 104, 104);
+            border: 7px dashed #fff;
+            border-radius: 4em;
+            padding-top: 3em/2 - 1em;
+            transition: all linear 0.15s;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .circ-button:active {
+            background: green;
+            border-color: invert(#fff);
+            color: invert(#fff);
+        }
+
+        .circ-button:disabled {
+            background: rgb(100, 14, 14);
+            border-color: invert(#fff);
+            color: invert(#fff);
+        }
+
+        #dark {
+            background: rgba(102, 102, 102, 0.5);
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: none;
+        }
+
+        #dark2 {
+            background: rgba(102, 102, 102, 0.5);
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: none;
+        }
+
+        #window {
+            width: 500px;
+            height: 500px;
+            text-align: center;
+            padding: 15px;
+            border: 3px solid green;
+            border-radius: 10px;
+            color: green;
+            font-family: Open Sans;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-decoration: none;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+            background: #fff;
+        }
+
+        #window2 {
+            width: 240px;
+            height: 70px;
+            text-align: center;
+            padding: 15px;
+            border: 3px solid green;
+            border-radius: 10px;
+            color: green;
+            font-family: Open Sans;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-decoration: none;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+            background: #fff;
+        }
+
+        #dark:target {
+            display: block;
+        }
+
+        #dark2:target {
+            display: block;
+        }
+
+        .close {
+            display: inline-block;
+            border: 1px solid green;
+            color: green;
+            padding: 0 12px;
+            margin: 10px;
+            font-family: Open Sans;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-decoration: none;
+            background: #f2f2f2;
+            font-size: 14pt;
+            cursor: pointer;
+        }
+
+        .close2 {
+            display: inline-block;
+            border: 1px solid green;
+            color: green;
+            padding: 0 12px;
+            margin: 10px;
+            font-family: Open Sans;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-decoration: none;
+            background: #f2f2f2;
+            font-size: 14pt;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            background: #e6e6ff;
+        }
+
+        .close2:hover {
+            background: #e6e6ff;
+        }
+
+        #ahelp {
+            color: white;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-decoration: none;
+        }
+    </style>
+
+</head>
+
+<body>
+    <a href="#dark" id="ahelp"><button id="help" class="circ-button b1">Help </button></a>
+    <button id="start" class="circ-button b2">Start</button>
+    <button id="take" class="circ-button b3" disabled>Take</button>
+    <button id="finish" class="circ-button b4" disabled>Finish</button>
+    <br>
+    <div id="axis">
+        <img class="object card" src="/card_shirt.png" width=120px />
+        <img class="object card1" src="/card_shirt.png" width=120px />
+        <img class="object card2" src="/card_shirt.png" width=120px />
+        <img id="1" class="object card" src="/card_shirt.png" width=120px />
+    </div>
+
+    <div id="dark2">
+        <div id="window2">
+        </div>
+    </div>
+
+    <div id="dark">
+        <div id="window">
+            Блэк-джек – одна из самых популярных карточных игр в казино по всему миру.
+            Большая популярность игры обуславливается простыми правилами, скоростью игры и наиболее простой стратегией в
+            подсчёте карт. <br>Правила<br>
+            В игре могут участвовать от одного до пяти игроков, не считая дилера (крупье). Цель игры - обыграть дилера и
+            других игроков, для чего необходимо набрать как можно больше очков, но не более 21.
+            Если у игрока ровно 21 очко, то такая комбинация и называется блэк-джек. Игроки, у которых блэк-джек,
+            гарантированно выигрывают. Ситуация, когда игрок набирает больше 21, называется перебор. Все игроки с
+            перебором проигрывают, вне зависимости от точного количества очков. Если в конце партии не оказалось ни
+            одного игрока с блэк-джеком, выигрывает тот, у кого больше всего очков (но меньше 21).
+            Очки игроки получают за карты, которые они берут. В начале игры каждому выдаётся по две карты, игроки
+            смотрят их, а карты крупье остаются закрыты. Игроки по очереди добирают карты, беря по одной из колоды.
+            Игрок сам решает, сколько карт брать и когда остановиться. После того, как походили все игроки, дилер
+            открывает свои карты и тоже начинает добирать их, но в открытую. Если он набрал сумму больше 16, он обязан
+            остановиться. После чего сравниваются очки, и определяется победитель или победители.
+            Очки за карты начисляются следующим образом: от 2 до 10 соответственно от 2 до 10, валет, дама и король по
+            10, туз – 1 или 11 в зависимости от того, что выгодно игроку. В игре используется бесконечная колода.
+            <br>
+            <a href="#" class="close">Close</a>
+        </div>
+    </div>
+</body>
+
+</html>
