@@ -8,6 +8,7 @@ const cookieParser = require('cookie-parser');
 const MongoClient = require('mongodb').MongoClient;
 const bcrypt = require("bcrypt");
 const md5 = require("md5");
+const urlShortener = require('node-url-shortener');
 
 const server = http.createServer(app);
 const { Server } = require("socket.io");
@@ -861,7 +862,17 @@ app.post('/signup', (req, res) => {
     return;
 });
 
-server.listen(3000, () => {
+app.post('/url', function (req, res) {
+    const url = req.body.url;
+
+    urlShortener.short(url, function (err, shortUrl) {
+        res.send(shortUrl);
+    });
+});
+
+const port = process.env.PORT || 3000;
+
+server.listen(port, () => {
     console.log('listening on *:3000');
 });
 
