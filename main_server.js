@@ -145,15 +145,15 @@ class User {
 
     socket_default() {
         try {
-            this.socket.removeAllListeners();
+            this.socket.removeAllListeners('disconnect');
 
             this.socket.on('disconnect', () => {
                 SocketStdDisconnect(this.socket);
             });
 
-            this.socket.on('take card', () => { });
-            this.socket.on('end step', () => { });
-            this.socket.on('start game', () => { });
+            this.socket.removeAllListeners('take card');
+            this.socket.removeAllListeners('end step');
+            this.socket.removeAllListeners('start game');
         }
         catch (err) {
             console.error(err);
@@ -171,6 +171,7 @@ class User {
 
     socket_get(msg_type, func) {
         try {
+            this.socket.removeAllListeners(msg_type);
             this.socket.on(msg_type, func);
         }
         catch (err) {
