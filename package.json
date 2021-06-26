@@ -21,12 +21,11 @@
     "webpack": "^5.40.0",
     "webpack-cli": "^4.7.2"
   },
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "engines": {
     "node": "14.x",
     "npm": "6.x"
-  }
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node main_server.js"
