@@ -571,7 +571,7 @@ class Room {
 
         if (TakeFlag) {
             const DealerRndCards = [11, 11, 11, 2, 2, 3, 3, 4, 4, 5, 6, 5, 6, 7, 8, 7, 8, 9, 10, 9, 10];
-            let k = DealerRndCards[getRandomInt(DealerRndCards.length - Math.min(0, this.dealer_cards_sum - 11) * 2)];
+            let k = DealerRndCards[getRandomInt(DealerRndCards.length - Math.max(0, this.dealer_cards_sum - 11) * 2)];
 
             this.dealer_cards_sum += k;
             this.dealer_cards.push(k);
